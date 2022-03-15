@@ -1,0 +1,18 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Account.win"
+        xmlns:Viewer="clr-namespace:SAPBusinessObjects.WPF.Viewer;assembly=SAPBusinessObjects.WPF.Viewer" xmlns:PersianDateControls="clr-namespace:Arash.PersianDateControls;assembly=PersianDateControls" x:Class="Account.win.win_Report"
+        mc:Ignorable="d"
+        Title="فرم نمایش گزارش" Height="700" Width="1200" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" Loaded="Window_Loaded">
+    <Grid>
+
+        <PersianDateControls:PersianDatePicker HorizontalAlignment="Left" Height="49" Margin="369,163,0,0" VerticalAlignment="Top" Width="100" Name="cal" Visibility="Hidden"/>
+        <Viewer:CrystalReportsViewer x:Name="rpt" HorizontalAlignment="Left" Height="650" Margin="10,10,0,0" VerticalAlignment="Top" Width="1172" ToggleSidePanel="None">
+            
+        </Viewer:CrystalReportsViewer>
+
+    </Grid>
+</Window>

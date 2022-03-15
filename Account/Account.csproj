@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B1B21D96-BBF1-434A-92F8-B79BF05D9244}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Account</RootNamespace>
+    <AssemblyName>Account</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Windows.Shell, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="PersianDate">
+      <HintPath>..\..\..\..\Desktop\Resourses\taghvim\PersianDate.dll</HintPath>
+    </Reference>
+    <Reference Include="PersianDateControls">
+      <HintPath>..\..\..\..\Desktop\Resourses\taghvim\PersianDateControls.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework" />
+    <Reference Include="RibbonControlsLibrary, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="sapbusinessobjects.wpf.viewer, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="SAPBusinessObjects.WPF.ViewerShared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Class\PublicVar.cs" />
+    <Compile Include="win\win_add_edit_customers.xaml.cs">
+      <DependentUpon>win_add_edit_customers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="win\win_add_edit_product.xaml.cs">
+      <DependentUpon>win_add_edit_product.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="win\win_add_edit_product_price.xaml.cs">
+      <DependentUpon>win_add_edit_product_price.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="win\win_add_edit_users.xaml.cs">
+      <DependentUpon>win_add_edit_users.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="win\win_change_password.xaml.cs">
+      <DependentUpon>win_change_password.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="win\win_customers.xaml.cs">
+      <DependentUpon>win_customers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="win\win_Factor.xaml.cs">
+      <DependentUpon>win_Factor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="win\win_Factors.xaml.cs">
+      <DependentUpon>win_Factors.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="win\win_products.xaml.cs">
+      <DependentUpon>win_products.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="win\win_product_price.xaml.cs">
+      <DependentUpon>win_product_price.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="win\win_Report.xaml.cs">
+      <DependentUpon>win_Report.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="win\win_Report_list.xaml.cs">
+      <DependentUpon>win_Report_list.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="win\win_transaction.xaml.cs">
+      <DependentUpon>win_transaction.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="win\win_transaction_add.xaml.cs">
+      <DependentUpon>win_transaction_add.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="win\win_users.xaml.cs">
+      <DependentUpon>win_users.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="win\win_UsersLog.xaml.cs">
+      <DependentUpon>win_UsersLog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="win_login.xaml.cs">
+      <DependentUpon>win_login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="win\win_main.xaml.cs">
+      <DependentUpon>win_main.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="theme\BubbleCreme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="theme\ShinyDarkPurple.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="win\win_add_edit_customers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="win\win_add_edit_product.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="win\win_add_edit_product_price.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="win\win_add_edit_users.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="win\win_change_password.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="win\win_customers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="win\win_Factor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="win\win_Factors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="win\win_products.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="win\win_product_price.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="win\win_Report.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="win\win_Report_list.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="win\win_transaction.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="win\win_transaction_add.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="win\win_users.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="win\win_UsersLog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="win_login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="win\win_main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\12.png" />
+    <Resource Include="img\13.png" />
+    <Resource Include="img\1cover.jpg" />
+    <Resource Include="img\2.png" />
+    <Resource Include="img\21.png" />
+    <Resource Include="img\2cover.jpg" />
+    <Resource Include="img\3cover.jpg" />
+    <Resource Include="img\4.png" />
+    <Resource Include="img\44.png" />
+    <Resource Include="img\57.jpg" />
+    <Resource Include="img\9.png" />
+    <Resource Include="img\add-icon.png" />
+    <Resource Include="img\add.png" />
+    <Resource Include="img\advanced.tiff" />
+    <Resource Include="img\ajza.png" />
+    <Resource Include="img\b3.png" />
+    <Resource Include="img\b4.png" />
+    <Resource Include="img\back22.jpg" />
+    <Resource Include="img\back23.jpg" />
+    <Resource Include="img\backcust.jpg" />
+    <Resource Include="img\background.jpg" />
+    <Resource Include="img\backGround.png" />
+    <Resource Include="img\background1.jpg" />
+    <Resource Include="img\background_main.png" />
+    <Resource Include="img\Box.png" />
+    <Resource Include="img\box_icon.png" />
+    <Resource Include="img\button_1.png" />
+    <Resource Include="img\clock.ico" />
+    <Resource Include="img\colorline.jpg" />
+    <Resource Include="img\customer.png" />
+    <Resource Include="img\dastresi.png" />
+    <Resource Include="img\del.png" />
+    <Resource Include="img\edit.png" />
+    <Resource Include="img\exit.png" />
+    <Resource Include="img\gol.jpg" />
+    <Resource Include="img\gol1.jpg" />
+    <Resource Include="img\gol2.png" />
+    <Resource Include="img\img1.jpg" />
+    <Resource Include="img\img2.jpg" />
+    <Resource Include="img\img3.jpg" />
+    <Resource Include="img\img4.jpg" />
+    <Resource Include="img\img5.jpg" />
+    <Resource Include="img\img6.jpg" />
+    <Resource Include="img\img7.jpg" />
+    <Resource Include="img\info.png" />
+    <Resource Include="img\inventory.png" />
+    <Resource Include="img\invoice.ico" />
+    <Resource Include="img\Login-icon.png" />
+    <Resource Include="img\Login.jpg" />
+    <Resource Include="img\manygol.jpg" />
+    <Resource Include="img\money.png" />
+    <Resource Include="img\mottakere.png" />
+    <Resource Include="img\nemudar.jpg" />
+    <Resource Include="img\nemudar.png" />
+    <Resource Include="img\no.png" />
+    <Resource Include="img\paein.png" />
+    <Resource Include="img\price.png" />
+    <Resource Include="img\price1.png" />
+    <Resource Include="img\product.png" />
+    <Resource Include="img\product1.jpg" />
+    <Resource Include="img\product2.gif" />
+    <Resource Include="img\productdefault.png" />
+    <Resource Include="img\report.png" />
+    <Resource Include="img\report_rpt.png" />
+    <Resource Include="img\search.ico" />
+    <Resource Include="img\send.png" />
+    <Resource Include="img\server.png" />
+    <Resource Include="img\Star.png" />
+    <Resource Include="img\stock-market.png" />
+    <Resource Include="img\stock.png" />
+    <Resource Include="img\title1.jpg" />
+    <Resource Include="img\title2.jpg" />
+    <Resource Include="img\users.jpg" />
+    <Resource Include="img\user_group.png" />
+    <Resource Include="img\win_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DateModel\DateModel.csproj">
+      <Project>{48b32b01-2d90-46ab-b4c4-05527601d209}</Project>
+      <Name>DateModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\change_pass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\cc.jpg" />
+    <Resource Include="img\ff.jpg" />
+    <Resource Include="img\ii.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

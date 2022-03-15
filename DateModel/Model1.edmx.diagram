@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8ff2c5e1da54498789f7c570f28d8785" Name="Diagram1" ZoomLevel="80">
+        <EntityTypeShape EntityType="AccountModel.USER" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountModel.VW_USERS" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountModel.PRODUCT" Width="1.75" PointX="3" PointY="6" />
+        <EntityTypeShape EntityType="AccountModel.VW_PRODUCTS" Width="1.75" PointX="5.375" PointY="0.75" />
+        <AssociationConnector Association="AccountModel.FK_PRODUCTS_USERS" />
+        <EntityTypeShape EntityType="AccountModel.PRODUCTPRICE" Width="1.5" PointX="5.5" PointY="5.625" />
+        <EntityTypeShape EntityType="AccountModel.VW_PRODUCTPRICE" Width="1.5" PointX="8.375" PointY="0.75" />
+        <AssociationConnector Association="AccountModel.FK_PRODUCTPRICE_PRODUCTS" />
+        <AssociationConnector Association="AccountModel.FK_PRODUCTPRICE_USERS" />
+        <EntityTypeShape EntityType="AccountModel.TRANSACTION" Width="1.5" PointX="8.5" PointY="4.875" />
+        <AssociationConnector Association="AccountModel.FK_PRODUCTSID_TRANSACTION" />
+        <AssociationConnector Association="AccountModel.FK_USERSID_TRANSACTION" />
+        <EntityTypeShape EntityType="AccountModel.USERSLOG" Width="1.5" PointX="3" PointY="10.625" />
+        <EntityTypeShape EntityType="AccountModel.VW_USERSLOG" Width="1.5" PointX="5.375" PointY="9.75" />
+        <AssociationConnector Association="AccountModel.FK_USERSID_USERSLOG" />
+        <EntityTypeShape EntityType="AccountModel.Customer" Width="1.5" PointX="3" PointY="14.75" />
+        <EntityTypeShape EntityType="AccountModel.HISTORY" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="AccountModel.VW_CUSTOMERS" Width="1.5" PointX="10.375" PointY="8.75" />
+        <AssociationConnector Association="AccountModel.Fk_Users_Customers" />
+        <EntityTypeShape EntityType="AccountModel.FACTOR" Width="1.5" PointX="8.25" PointY="13" />
+        <AssociationConnector Association="AccountModel.FK_FACTOR_CUSTOMERID" />
+        <AssociationConnector Association="AccountModel.FK_FACTOR_USERSID" />
+        <EntityTypeShape EntityType="AccountModel.VW_TRANSACTION" Width="1.5" PointX="11.375" PointY="3.75" />
+        <EntityTypeShape EntityType="AccountModel.FACTORITEM" Width="1.5" PointX="10.5" PointY="12.75" />
+        <AssociationConnector Association="AccountModel.FK_FACTORITMS_FACTORID" />
+        <AssociationConnector Association="AccountModel.FK_FACTORITEMS_PRODUCTS" />
+        <EntityTypeShape EntityType="AccountModel.VW_FACTORITEMS" Width="1.5" PointX="7.375" PointY="9.75" />
+        <EntityTypeShape EntityType="AccountModel.VW_FACTORS" Width="1.5" PointX="12.375" PointY="7.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,214 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Account.win"
+        xmlns:PersianDateControls="clr-namespace:Arash.PersianDateControls;assembly=PersianDateControls" x:Class="Account.win.win_add_edit_users"
+        mc:Ignorable="d"
+        Title="win_add_edit_users" Height="450" Width="600" Background="Transparent" AllowsTransparency="True" WindowStartupLocation="CenterScreen" WindowStyle="None" Loaded="Window_Loaded">
+    <Grid>
+        <Rectangle HorizontalAlignment="Left" Height="430" Margin="10,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="580" RadiusX="12" RadiusY="12">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFEDF4FF" Offset="0"/>
+                    <GradientStop Color="#FF3085FF" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Cursor="ScrollAll" Height="88" Margin="10,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="580" RadiusX="12" RadiusY="12" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF93F9E2" Offset="0"/>
+                    <GradientStop Color="#FFD2E6E1" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Image HorizontalAlignment="Left" Source="/Account;component/img/mottakere.png" Height="78" Margin="15,15,0,0" VerticalAlignment="Top" Width="82">
+            <Image.Effect>
+                <DropShadowEffect/>
+            </Image.Effect>
+        </Image>
+        <Image HorizontalAlignment="Left" Cursor="Hand" Source="/Account;component/img/exit.png" Height="35" Margin="291,15,0,0" VerticalAlignment="Top" Width="35" MouseLeftButtonDown="Image_MouseLeftButtonDown">
+            <Image.Effect>
+                <DropShadowEffect/>
+            </Image.Effect>
+        </Image>
+        <Image HorizontalAlignment="Left" Source="/Account;component/img/mottakere.png" Height="78" Margin="507,14,0,0" VerticalAlignment="Top" Width="82" RenderTransformOrigin="0.5,0.5">
+            <Image.Effect>
+                <DropShadowEffect/>
+            </Image.Effect>
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                    <SkewTransform AngleY="0" AngleX="0"/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Label x:Name="lbl_title" Content="فرم ایجاد کاربران" HorizontalAlignment="Left" Margin="239,52,0,0" VerticalAlignment="Top" FontSize="18" Background="{x:Null}" FontFamily="Segoe UI Black">
+            <Label.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="1"/>
+                    <GradientStop Color="Red"/>
+                </LinearGradientBrush>
+            </Label.Foreground>
+            <Label.OpacityMask>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF914343" Offset="0"/>
+                    <GradientStop Color="Red" Offset="1"/>
+                </LinearGradientBrush>
+            </Label.OpacityMask>
+        </Label>
+        <TextBox x:Name="txt_name" TabIndex="0" MaxLength="50" FlowDirection="RightToLeft" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="29" Margin="318,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168">
+            <TextBox.Effect>
+                <DropShadowEffect/>
+            </TextBox.Effect>
+            <TextBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD3D9FF" Offset="0"/>
+                    <GradientStop Color="#FFBAFDA7" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBox.Background>
+        </TextBox>
+        <ComboBox x:Name="cmb_sex" HorizontalAlignment="Left" FlowDirection="RightToLeft" HorizontalContentAlignment="Center" TabIndex="2" Margin="71,242,0,0" VerticalAlignment="Top" Width="128" Height="29" Foreground="#FF1700FF" BorderBrush="#FFC9CD9D">
+            <ComboBox.Effect>
+                <DropShadowEffect/>
+            </ComboBox.Effect>
+            <ComboBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFBFF7B6" Offset="0"/>
+                    <GradientStop Color="#FFD1DFEC" Offset="1"/>
+                </LinearGradientBrush>
+            </ComboBox.Background>
+        </ComboBox>
+        <Label Content="نام" HorizontalAlignment="Left" Margin="528,130,0,0" VerticalAlignment="Top" FontSize="14">
+            <Label.Effect>
+                <DropShadowEffect/>
+            </Label.Effect>
+        </Label>
+        <Label Content="نام خانوادگی" HorizontalAlignment="Left" Margin="504,187,0,0" VerticalAlignment="Top" FontSize="14">
+            <Label.Effect>
+                <DropShadowEffect/>
+            </Label.Effect>
+        </Label>
+        <Label Content="آدرس" HorizontalAlignment="Left" Margin="512,294,0,0" VerticalAlignment="Top" FontSize="14">
+            <Label.Effect>
+                <DropShadowEffect/>
+            </Label.Effect>
+        </Label>
+        <Label Content="جنسیت" HorizontalAlignment="Left" Margin="239,242,0,0" VerticalAlignment="Top" FontSize="14">
+            <Label.Effect>
+                <DropShadowEffect/>
+            </Label.Effect>
+        </Label>
+        <Label Content="نام کاربری" HorizontalAlignment="Left" Margin="504,242,0,0" VerticalAlignment="Top" FontSize="14">
+            <Label.Effect>
+                <DropShadowEffect/>
+            </Label.Effect>
+        </Label>
+        <Label Content="سن" HorizontalAlignment="Left" Margin="239,294,0,0" VerticalAlignment="Top" FontSize="14">
+            <Label.Effect>
+                <DropShadowEffect/>
+            </Label.Effect>
+        </Label>
+        <Label Content="تلفن" HorizontalAlignment="Left" Margin="239,187,0,0" VerticalAlignment="Top" FontSize="14">
+            <Label.Effect>
+                <DropShadowEffect/>
+            </Label.Effect>
+        </Label>
+        <Label Content="رمز عبور" HorizontalAlignment="Left" Margin="239,130,0,0" VerticalAlignment="Top" FontSize="14">
+            <Label.Effect>
+                <DropShadowEffect/>
+            </Label.Effect>
+        </Label>
+        <TextBox x:Name="txt_family" TabIndex="1" MaxLength="50" FlowDirection="RightToLeft" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="29" Margin="318,187,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168">
+            <TextBox.Effect>
+                <DropShadowEffect/>
+            </TextBox.Effect>
+            <TextBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD3D9FF" Offset="0"/>
+                    <GradientStop Color="#FFBAFDA7" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBox.Background>
+        </TextBox>
+        <TextBox x:Name="txt_address" TabIndex="3" MaxLength="450" FlowDirection="RightToLeft" HorizontalAlignment="Left" Height="128" Margin="318,294,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168">
+            <TextBox.Effect>
+                <DropShadowEffect/>
+            </TextBox.Effect>
+            <TextBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD3D9FF" Offset="0"/>
+                    <GradientStop Color="#FFBAFDA7" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBox.Background>
+        </TextBox>
+        <TextBox x:Name="txt_username" TabIndex="2" MaxLength="50" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="29" Margin="318,242,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168">
+            <TextBox.Effect>
+                <DropShadowEffect/>
+            </TextBox.Effect>
+            <TextBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD3D9FF" Offset="0"/>
+                    <GradientStop Color="#FFBAFDA7" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBox.Background>
+        </TextBox>
+        <TextBox x:Name="txt_no" TabIndex="5" MaxLength="11" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="29" Margin="51,187,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" PreviewTextInput="txt_no_PreviewTextInput">
+            <TextBox.Effect>
+                <DropShadowEffect/>
+            </TextBox.Effect>
+            <TextBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD3D9FF" Offset="0"/>
+                    <GradientStop Color="#FFBAFDA7" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBox.Background>
+        </TextBox>
+        <PasswordBox x:Name="password" VerticalContentAlignment="Center" MaxLength="25" HorizontalAlignment="Left" TabIndex="4" Margin="51,130,0,0" VerticalAlignment="Top" Width="168" Height="29">
+            <PasswordBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD1DFEB" Offset="0"/>
+                    <GradientStop Color="#FFBBFBAA" Offset="1"/>
+                </LinearGradientBrush>
+            </PasswordBox.Background>
+            <PasswordBox.Effect>
+                <DropShadowEffect/>
+            </PasswordBox.Effect>
+        </PasswordBox>
+        <ComboBox x:Name="cmb_age" HorizontalAlignment="Left" FlowDirection="RightToLeft" HorizontalContentAlignment="Center" TabIndex="2" Margin="91,294,0,0" VerticalAlignment="Top" Width="88" Height="29" Foreground="#FF1700FF" BorderBrush="#FFC9CD9D">
+            <ComboBox.Effect>
+                <DropShadowEffect/>
+            </ComboBox.Effect>
+            <ComboBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFBFF7B6" Offset="0"/>
+                    <GradientStop Color="#FFD1DFEC" Offset="1"/>
+                </LinearGradientBrush>
+            </ComboBox.Background>
+        </ComboBox>
+        <Button x:Name="btn_submit" IsDefault="True" Content="ثبت" HorizontalAlignment="Left" Margin="171,358,0,0" VerticalAlignment="Top" Width="120" Height="59" FontFamily="Segoe UI Black" FontSize="16" Foreground="#FF1B4389" Click="btn_submit_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="White" Offset="0"/>
+                    <GradientStop Color="#FFFF00F3" Offset="1"/>
+                    <GradientStop Color="#FF8E5095" Offset="0.407"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btn_cancel" IsCancel="True" Content="انصراف" HorizontalAlignment="Left" Margin="34,358,0,0" VerticalAlignment="Top" Width="120" Height="59" FontFamily="Segoe UI Black" FontSize="16" Foreground="#FF1B4389">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="White" Offset="0"/>
+                    <GradientStop Color="#FFFF00F3" Offset="1"/>
+                    <GradientStop Color="#FF8E5095" Offset="0.407"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+
+        <PersianDateControls:PersianDatePicker x:Name="cal" Visibility="Hidden" HorizontalAlignment="Left" Height="34" Margin="119,30,0,0" VerticalAlignment="Top" Width="100"/>
+
+    </Grid>
+</Window>

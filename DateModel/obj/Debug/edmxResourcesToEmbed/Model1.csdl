@@ -1,0 +1,504 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AccountModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="USER">
+    <Key>
+      <PropertyRef Name="USERID" />
+    </Key>
+    <Property Name="USERID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="USERFAMILY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="USERAGE" Type="Byte" />
+    <Property Name="USERSEX" Type="Byte" />
+    <Property Name="USERACTIVE" Type="Byte" />
+    <Property Name="USERUSERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="USERPASSWORD" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="USERADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="USERSTARTDATE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="USERUPDATEDATE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="USERNO" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PRODUCTS" Relationship="AccountModel.FK_PRODUCTS_USERS" FromRole="USER" ToRole="PRODUCT" />
+    <NavigationProperty Name="PRODUCTPRICEs" Relationship="AccountModel.FK_PRODUCTPRICE_USERS" FromRole="USER" ToRole="PRODUCTPRICE" />
+    <NavigationProperty Name="TRANSACTIONs" Relationship="AccountModel.FK_USERSID_TRANSACTION" FromRole="USER" ToRole="TRANSACTION" />
+    <NavigationProperty Name="USERSLOGs" Relationship="AccountModel.FK_USERSID_USERSLOG" FromRole="USER" ToRole="USERSLOG" />
+    <NavigationProperty Name="Customers" Relationship="AccountModel.Fk_Users_Customers" FromRole="USER" ToRole="Customer" />
+    <NavigationProperty Name="FACTORs" Relationship="AccountModel.FK_FACTOR_USERSID" FromRole="USER" ToRole="FACTOR" />
+  </EntityType>
+  <EntityType Name="VW_USERS">
+    <Key>
+      <PropertyRef Name="USERID" />
+    </Key>
+    <Property Name="USERID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="USERFAMILY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="USERAGE" Type="Byte" />
+    <Property Name="USERSEX" Type="Byte" />
+    <Property Name="USERACTIVE" Type="Byte" />
+    <Property Name="USERUSERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="USERPASSWORD" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="USERADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="USERSTARTDATE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="USERUPDATEDATE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="USERNO" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="ACTIVEFARSI" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+    <Property Name="GENDERFARSI" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="FULLNAME" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="AccountEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="USERS" EntityType="Self.USER" />
+    <EntitySet Name="VW_USERS" EntityType="Self.VW_USERS" />
+    <FunctionImport Name="SP_INSERT_USERS">
+      <Parameter Name="NAME" Mode="In" Type="String" />
+      <Parameter Name="FAMILY" Mode="In" Type="String" />
+      <Parameter Name="AGE" Mode="In" Type="Byte" />
+      <Parameter Name="SEX" Mode="In" Type="Byte" />
+      <Parameter Name="USERNAME" Mode="In" Type="String" />
+      <Parameter Name="PASSWORD" Mode="In" Type="String" />
+      <Parameter Name="ADDRESS" Mode="In" Type="String" />
+      <Parameter Name="STARTDATE" Mode="In" Type="String" />
+      <Parameter Name="PHONE" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="PRODUCTS" EntityType="AccountModel.PRODUCT" />
+    <EntitySet Name="VW_PRODUCTS" EntityType="AccountModel.VW_PRODUCTS" />
+    <AssociationSet Name="FK_PRODUCTS_USERS" Association="AccountModel.FK_PRODUCTS_USERS">
+      <End Role="USER" EntitySet="USERS" />
+      <End Role="PRODUCT" EntitySet="PRODUCTS" />
+    </AssociationSet>
+    <FunctionImport Name="SP_INSERT_PRODUCTS">
+      <Parameter Name="NAME" Mode="In" Type="String" />
+      <Parameter Name="DISCRIPTION" Mode="In" Type="String" />
+      <Parameter Name="IMG" Mode="In" Type="Binary" />
+      <Parameter Name="DATE" Mode="In" Type="String" />
+      <Parameter Name="USERID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="PRODUCTPRICEs" EntityType="AccountModel.PRODUCTPRICE" />
+    <EntitySet Name="VW_PRODUCTPRICE" EntityType="AccountModel.VW_PRODUCTPRICE" />
+    <AssociationSet Name="FK_PRODUCTPRICE_PRODUCTS" Association="AccountModel.FK_PRODUCTPRICE_PRODUCTS">
+      <End Role="PRODUCT" EntitySet="PRODUCTS" />
+      <End Role="PRODUCTPRICE" EntitySet="PRODUCTPRICEs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCTPRICE_USERS" Association="AccountModel.FK_PRODUCTPRICE_USERS">
+      <End Role="USER" EntitySet="USERS" />
+      <End Role="PRODUCTPRICE" EntitySet="PRODUCTPRICEs" />
+    </AssociationSet>
+    <FunctionImport Name="SP_UPDATE_PRODUCTS">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="LASTPRICE" Mode="In" Type="Int64" />
+      <Parameter Name="LASTPURCHFEE" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SP_INSERT_TRANSACTION">
+      <Parameter Name="COUNT" Mode="In" Type="Int32" />
+      <Parameter Name="DIS" Mode="In" Type="String" />
+      <Parameter Name="DATE" Mode="In" Type="String" />
+      <Parameter Name="USERSID" Mode="In" Type="Int32" />
+      <Parameter Name="PRODUCTSID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="TRANSACTIONs" EntityType="AccountModel.TRANSACTION" />
+    <AssociationSet Name="FK_PRODUCTSID_TRANSACTION" Association="AccountModel.FK_PRODUCTSID_TRANSACTION">
+      <End Role="PRODUCT" EntitySet="PRODUCTS" />
+      <End Role="TRANSACTION" EntitySet="TRANSACTIONs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USERSID_TRANSACTION" Association="AccountModel.FK_USERSID_TRANSACTION">
+      <End Role="USER" EntitySet="USERS" />
+      <End Role="TRANSACTION" EntitySet="TRANSACTIONs" />
+    </AssociationSet>
+    <FunctionImport Name="SP_UPDATE_PRODUCTLASTSUPLY">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="SUPLY" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="USERSLOGs" EntityType="AccountModel.USERSLOG" />
+    <EntitySet Name="VW_USERSLOG" EntityType="AccountModel.VW_USERSLOG" />
+    <AssociationSet Name="FK_USERSID_USERSLOG" Association="AccountModel.FK_USERSID_USERSLOG">
+      <End Role="USER" EntitySet="USERS" />
+      <End Role="USERSLOG" EntitySet="USERSLOGs" />
+    </AssociationSet>
+    <FunctionImport Name="SP_UPDATE_USERLOG">
+      <Parameter Name="USERSID" Mode="In" Type="Int32" />
+      <Parameter Name="EXITTIME" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_USERS_PASS_CHANGE">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="PASSWORD" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Customers" EntityType="AccountModel.Customer" />
+    <EntitySet Name="HISTORies" EntityType="AccountModel.HISTORY" />
+    <EntitySet Name="VW_CUSTOMERS" EntityType="AccountModel.VW_CUSTOMERS" />
+    <AssociationSet Name="Fk_Users_Customers" Association="AccountModel.Fk_Users_Customers">
+      <End Role="USER" EntitySet="USERS" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+    <EntitySet Name="FACTORs" EntityType="AccountModel.FACTOR" />
+    <AssociationSet Name="FK_FACTOR_CUSTOMERID" Association="AccountModel.FK_FACTOR_CUSTOMERID">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="FACTOR" EntitySet="FACTORs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FACTOR_USERSID" Association="AccountModel.FK_FACTOR_USERSID">
+      <End Role="USER" EntitySet="USERS" />
+      <End Role="FACTOR" EntitySet="FACTORs" />
+    </AssociationSet>
+    <EntitySet Name="VW_TRANSACTION" EntityType="AccountModel.VW_TRANSACTION" />
+    <EntitySet Name="FACTORITEMS" EntityType="AccountModel.FACTORITEM" />
+    <AssociationSet Name="FK_FACTORITMS_FACTORID" Association="AccountModel.FK_FACTORITMS_FACTORID">
+      <End Role="FACTOR" EntitySet="FACTORs" />
+      <End Role="FACTORITEM" EntitySet="FACTORITEMS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FACTORITEMS_PRODUCTS" Association="AccountModel.FK_FACTORITEMS_PRODUCTS">
+      <End Role="PRODUCT" EntitySet="PRODUCTS" />
+      <End Role="FACTORITEM" EntitySet="FACTORITEMS" />
+    </AssociationSet>
+    <EntitySet Name="VW_FACTORITEMS" EntityType="AccountModel.VW_FACTORITEMS" />
+    <EntitySet Name="VW_FACTORS" EntityType="AccountModel.VW_FACTORS" />
+  </EntityContainer>
+  <EntityType Name="PRODUCT">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProductDiscription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ProductImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductLastFee" Type="Int64" />
+    <Property Name="ProductLastSuply" Type="Int32" />
+    <Property Name="ProductStartDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ProductUpdateDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="UsersId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="USER" Relationship="AccountModel.FK_PRODUCTS_USERS" FromRole="PRODUCT" ToRole="USER" />
+    <NavigationProperty Name="PRODUCTPRICEs" Relationship="AccountModel.FK_PRODUCTPRICE_PRODUCTS" FromRole="PRODUCT" ToRole="PRODUCTPRICE" />
+    <Property Name="ProductActive" Type="Byte" />
+    <NavigationProperty Name="TRANSACTIONs" Relationship="AccountModel.FK_PRODUCTSID_TRANSACTION" FromRole="PRODUCT" ToRole="TRANSACTION" />
+    <Property Name="ProductLastPurchFee" Type="Int64" />
+    <NavigationProperty Name="FACTORITEMS" Relationship="AccountModel.FK_FACTORITEMS_PRODUCTS" FromRole="PRODUCT" ToRole="FACTORITEM" />
+  </EntityType>
+  <EntityType Name="VW_PRODUCTS">
+    <Key>
+      <PropertyRef Name="ProductId" />
+      <PropertyRef Name="UsersId" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProductDiscription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ProductImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductLastFee" Type="Int64" />
+    <Property Name="ProductLastSuply" Type="Int32" />
+    <Property Name="ProductStartDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ProductUpdateDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="UsersId" Type="Int32" Nullable="false" />
+    <Property Name="USERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="USERFAMILY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FULLNAME" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="ProductActive" Type="Byte" />
+    <Property Name="ProductLastPurchFee" Type="Int64" />
+  </EntityType>
+  <Association Name="FK_PRODUCTS_USERS">
+    <End Type="AccountModel.USER" Role="USER" Multiplicity="1" />
+    <End Type="AccountModel.PRODUCT" Role="PRODUCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="USERID" />
+      </Principal>
+      <Dependent Role="PRODUCT">
+        <PropertyRef Name="UsersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PRODUCTPRICE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SELLPRICE" Type="Int64" />
+    <Property Name="BUYPRICE" Type="Int64" />
+    <Property Name="DISCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="STARTDATE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="USERSID" Type="Int32" />
+    <Property Name="PRODUCTSID" Type="Int32" />
+    <NavigationProperty Name="PRODUCT" Relationship="AccountModel.FK_PRODUCTPRICE_PRODUCTS" FromRole="PRODUCTPRICE" ToRole="PRODUCT" />
+    <NavigationProperty Name="USER" Relationship="AccountModel.FK_PRODUCTPRICE_USERS" FromRole="PRODUCTPRICE" ToRole="USER" />
+  </EntityType>
+  <EntityType Name="VW_PRODUCTPRICE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="SELLPRICE" Type="Int64" />
+    <Property Name="BUYPRICE" Type="Int64" />
+    <Property Name="DISCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="STARTDATE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="USERSID" Type="Int32" />
+    <Property Name="PRODUCTSID" Type="Int32" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="USERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="USERFAMILY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FULLNAME" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_PRODUCTPRICE_PRODUCTS">
+    <End Type="AccountModel.PRODUCT" Role="PRODUCT" Multiplicity="0..1" />
+    <End Type="AccountModel.PRODUCTPRICE" Role="PRODUCTPRICE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="PRODUCTPRICE">
+        <PropertyRef Name="PRODUCTSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCTPRICE_USERS">
+    <End Type="AccountModel.USER" Role="USER" Multiplicity="0..1" />
+    <End Type="AccountModel.PRODUCTPRICE" Role="PRODUCTPRICE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="USERID" />
+      </Principal>
+      <Dependent Role="PRODUCTPRICE">
+        <PropertyRef Name="USERSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TRANSACTION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="COUNT" Type="Int32" />
+    <Property Name="DISCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="STARTDATE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="USERSID" Type="Int32" />
+    <Property Name="PRODUCTSID" Type="Int32" />
+    <NavigationProperty Name="PRODUCT" Relationship="AccountModel.FK_PRODUCTSID_TRANSACTION" FromRole="TRANSACTION" ToRole="PRODUCT" />
+    <NavigationProperty Name="USER" Relationship="AccountModel.FK_USERSID_TRANSACTION" FromRole="TRANSACTION" ToRole="USER" />
+  </EntityType>
+  <Association Name="FK_PRODUCTSID_TRANSACTION">
+    <End Type="AccountModel.PRODUCT" Role="PRODUCT" Multiplicity="0..1" />
+    <End Type="AccountModel.TRANSACTION" Role="TRANSACTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="TRANSACTION">
+        <PropertyRef Name="PRODUCTSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USERSID_TRANSACTION">
+    <End Type="AccountModel.USER" Role="USER" Multiplicity="0..1" />
+    <End Type="AccountModel.TRANSACTION" Role="TRANSACTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="USERID" />
+      </Principal>
+      <Dependent Role="TRANSACTION">
+        <PropertyRef Name="USERSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="USERSLOG">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PCNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IPADDRESS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="STARTDATE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ENDDATE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="USERSID" Type="Int32" />
+    <NavigationProperty Name="USER" Relationship="AccountModel.FK_USERSID_USERSLOG" FromRole="USERSLOG" ToRole="USER" />
+  </EntityType>
+  <EntityType Name="VW_USERSLOG">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="PCNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IPADDRESS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="STARTDATE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ENDDATE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="USERSID" Type="Int32" />
+    <Property Name="FULLNAME" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="USERUSERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_USERSID_USERSLOG">
+    <End Type="AccountModel.USER" Role="USER" Multiplicity="0..1" />
+    <End Type="AccountModel.USERSLOG" Role="USERSLOG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="USERID" />
+      </Principal>
+      <Dependent Role="USERSLOG">
+        <PropertyRef Name="USERSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Mobile" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="StartDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="USER" Relationship="AccountModel.Fk_Users_Customers" FromRole="Customer" ToRole="USER" />
+    <Property Name="IsActive" Type="Byte" />
+    <NavigationProperty Name="FACTORs" Relationship="AccountModel.FK_FACTOR_CUSTOMERID" FromRole="Customer" ToRole="FACTOR" />
+  </EntityType>
+  <EntityType Name="HISTORY">
+    <Key>
+      <PropertyRef Name="HID" />
+    </Key>
+    <Property Name="HID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TABLENAME" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="COLID" Type="Int32" />
+    <Property Name="DATE" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="VW_CUSTOMERS">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Mobile" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="StartDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="USERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="USERFAMILY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FULLNAME" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Byte" />
+  </EntityType>
+  <Association Name="Fk_Users_Customers">
+    <End Type="AccountModel.USER" Role="USER" Multiplicity="0..1" />
+    <End Type="AccountModel.Customer" Role="Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="USERID" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="FACTOR">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StartDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerId" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="Customer" Relationship="AccountModel.FK_FACTOR_CUSTOMERID" FromRole="FACTOR" ToRole="Customer" />
+    <NavigationProperty Name="USER" Relationship="AccountModel.FK_FACTOR_USERSID" FromRole="FACTOR" ToRole="USER" />
+    <Property Name="LastBuyFee" Type="Int64" />
+    <Property Name="LastPurchFee" Type="Int64" />
+    <NavigationProperty Name="FACTORITEMS" Relationship="AccountModel.FK_FACTORITMS_FACTORID" FromRole="FACTOR" ToRole="FACTORITEM" />
+    <Property Name="PurchType" Type="Boolean" />
+  </EntityType>
+  <Association Name="FK_FACTOR_CUSTOMERID">
+    <End Type="AccountModel.Customer" Role="Customer" Multiplicity="0..1" />
+    <End Type="AccountModel.FACTOR" Role="FACTOR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FACTOR">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FACTOR_USERSID">
+    <End Type="AccountModel.USER" Role="USER" Multiplicity="0..1" />
+    <End Type="AccountModel.FACTOR" Role="FACTOR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="USERID" />
+      </Principal>
+      <Dependent Role="FACTOR">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="VW_TRANSACTION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="COUNT" Type="Int32" />
+    <Property Name="DISCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="STARTDATE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="USERSID" Type="Int32" />
+    <Property Name="PRODUCTSID" Type="Int32" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="USERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="USERFAMILY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FULLNAME" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="AFFECT" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="FACTORITEM">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="COUNT" Type="Int32" />
+    <Property Name="LastPurchFee" Type="Int64" />
+    <Property Name="LastBuyFee" Type="Int64" />
+    <Property Name="FactorId" Type="Int32" />
+    <Property Name="ProductId" Type="Int32" />
+    <NavigationProperty Name="FACTOR" Relationship="AccountModel.FK_FACTORITMS_FACTORID" FromRole="FACTORITEM" ToRole="FACTOR" />
+    <NavigationProperty Name="PRODUCT" Relationship="AccountModel.FK_FACTORITEMS_PRODUCTS" FromRole="FACTORITEM" ToRole="PRODUCT" />
+  </EntityType>
+  <Association Name="FK_FACTORITMS_FACTORID">
+    <End Type="AccountModel.FACTOR" Role="FACTOR" Multiplicity="0..1" />
+    <End Type="AccountModel.FACTORITEM" Role="FACTORITEM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FACTOR">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FACTORITEM">
+        <PropertyRef Name="FactorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FACTORITEMS_PRODUCTS">
+    <End Type="AccountModel.PRODUCT" Role="PRODUCT" Multiplicity="0..1" />
+    <End Type="AccountModel.FACTORITEM" Role="FACTORITEM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="FACTORITEM">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="VW_FACTORITEMS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="COUNT" Type="Int32" />
+    <Property Name="LastPurchFee" Type="Int64" />
+    <Property Name="LastBuyFee" Type="Int64" />
+    <Property Name="FactorId" Type="Int32" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VW_FACTORS">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="LastBuyFee" Type="Int64" />
+    <Property Name="LastPurchFee" Type="Int64" />
+    <Property Name="StartDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="PurchType" Type="Boolean" />
+    <Property Name="CustomerId" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="USERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="USERFAMILY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FULLNAME" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Mobile" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="FARSIPURCHTYPE" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>
